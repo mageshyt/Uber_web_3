@@ -5,7 +5,7 @@ import React from 'react'
 
 const style = {
   wrapper:
-    'h-16 w-full flex md:justify-around items-center px-60 bg-black text-white',
+    'h-18 py-2 w-full flex md:justify-around items-center px-60 bg-black text-white',
 }
 // ! Current Account
 
