@@ -1,4 +1,5 @@
 import React from 'react'
+import RiderSelector from './RiderSelector'
 const style = {
   wrapper: `flex-1 h-full flex flex-col justify-between`,
   rideSelectorContainer: `h-full flex flex-col overflow-scroll`,
@@ -11,7 +12,9 @@ const Confirm = () => {
   return (
     <div className={style.wrapper}>
       {/* For selecting the rider */}
-      <div className={style.rideSelectorContainer}></div>
+      <div className={style.rideSelectorContainer}>
+        <RiderSelector />
+      </div>
       {/* conform the trip */}
       <div className={style.confirmButtonContainer}>
         <div className={style.confirmButtonContainer}>
