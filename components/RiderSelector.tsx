@@ -54,12 +54,14 @@ const RiderSelector = () => {
       <div className={style.carList}>
         {CardList.map((car: any, index: number) => {
           return (
-            <CarCardComponent
-              loading={loading}
-              index={index}
-              car={car}
-              ethLogo={ethLogo}
-            />
+            <div key={index}>
+              <CarCardComponent
+                loading={loading}
+                index={index}
+                car={car}
+                ethLogo={ethLogo}
+              />
+            </div>
           )
         })}
       </div>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { UberContext } from '../context/UberContext'
 const style = {
   wrapper: 'pt-2',
   SearchHeader:
@@ -11,12 +12,12 @@ const style = {
   verticalLine: `w-0 h-[2rem] border-black border absolute z-10 left-[2.3rem] top-[2rem]`,
 }
 const LocationSelector = () => {
+  //! use contextual
+  const { pickUp, dropOff, setPickUp, setDropOff } = useContext(UberContext)
+  console.log(pickUp, dropOff)
   //! to track the focus of the input box
   const [inFocus, setInFocus] = useState('from')
   //! to track the pick up
-  const [pickUp, setPickUp] = useState('')
-  //! to track dropoff
-  const [dropOff, setDropOff] = useState('')
   return (
     <div className={style.wrapper}>
       {/* Search header */}
