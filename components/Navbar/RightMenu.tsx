@@ -14,15 +14,17 @@ const style = {
 
 interface Props {
   currentAccount: string
+  connectWallet: () => void
+  name: string
 }
-export const RightMenu = ({ currentAccount }: Props) => {
+export const RightMenu = ({ name, currentAccount, connectWallet }: Props) => {
   return (
     <div className={style.rightMenu}>
       {/* Menu Items */}
       {/* Help */}
       <div className={style.navItems}>Help</div>
       {/* use name */}
-      <div className={style.navItems}>Magesh</div>
+      <div className={style.navItems}>{name}</div>
       {/* Profile pic */}
       <div className={style.userImageContainer}>
         <Image className={style.userImage} src={Logo} height={40} width={40} />
@@ -33,7 +35,7 @@ export const RightMenu = ({ currentAccount }: Props) => {
           {currentAccount.slice(0, 6) + '...' + currentAccount.slice(39)}
         </div>
       ) : (
-        <div className={style.loginButton}>
+        <div onClick={() => connectWallet()} className={style.loginButton}>
           <BsPersonFill />
           <div className={style.loginText}>Please Login !</div>
         </div>

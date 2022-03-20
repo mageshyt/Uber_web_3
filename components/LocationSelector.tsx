@@ -14,7 +14,6 @@ const style = {
 const LocationSelector = () => {
   //! use contextual
   const { pickUp, dropOff, setPickUp, setDropOff } = useContext(UberContext)
-  console.log(pickUp, dropOff)
   //! to track the focus of the input box
   const [inFocus, setInFocus] = useState('from')
   //! to track the pick up

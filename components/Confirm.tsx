@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UberContext } from '../context/UberContext'
+import { Set_Trip_Details } from '../lib/SaveTrips'
 import RiderSelector from './RiderSelector'
 const style = {
   wrapper: `flex-1 h-full flex flex-col justify-between`,
@@ -8,18 +10,33 @@ const style = {
 }
 const Confirm = () => {
   //! to get tip detail
-  const storeTripDetail = () => {}
+  const {
+    account,
+    pickUp,
+    dropOff,
+    price,
+    selectedRide,
+    pickUpCoordinates,
+    dropOffCoordinates,
+  } = useContext(UberContext)
+
+  const storeTripDetail = async () => {
+    Set_Trip_Details(pickUp, dropOff, account, price, selectedRide.service)
+  }
   return (
     <div className={style.wrapper}>
       {/* For selecting the rider */}
       <div className={style.rideSelectorContainer}>
-        <RiderSelector />
+        {pickUpCoordinates && dropOffCoordinates && <RiderSelector />}
       </div>
       {/* conform the trip */}
       <div className={style.confirmButtonContainer}>
         <div className={style.confirmButtonContainer}>
-          <div onClick={() => storeTripDetail} className={style.confirmButton}>
-            Confirm
+          <div
+            onClick={() => storeTripDetail()}
+            className={style.confirmButton}
+          >
+            Confirm {selectedRide.service || 'Uber X'}
           </div>
         </div>
       </div>

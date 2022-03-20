@@ -17,7 +17,6 @@ const Map = () => {
       center: [-99.29011, 39.39172],
       zoom: 3,
     })
-    console.log({ cod: pickUpCoordinates })
 
     if (pickUpCoordinates) {
       addToMap(map, pickUpCoordinates[0].center)
