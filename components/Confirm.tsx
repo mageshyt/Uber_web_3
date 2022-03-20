@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { UberContext } from '../context/UberContext'
 import { Set_Trip_Details } from '../lib/SaveTrips'
 import RiderSelector from './RiderSelector'
@@ -18,10 +19,35 @@ const Confirm = () => {
     selectedRide,
     pickUpCoordinates,
     dropOffCoordinates,
+    metamask,
   } = useContext(UberContext)
-
+  // Loading
+  const [loading, setLoading] = React.useState<boolean>(true)
+  const [Active, setActive] = React.useState<boolean>(false)
+  const SendTransaction = async () => {
+    try {
+      await metamask.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from: account,
+            to: '0x9a9e6793880041ca39122C97260fBb70B7C254D8',
+          },
+        ],
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const storeTripDetail = async () => {
     Set_Trip_Details(pickUp, dropOff, account, price, selectedRide.service)
+    await SendTransaction()
+    setLoading(false)
+  }
+  if (loading) {
+    console.log('done')
+  } else {
+    console.log('processing')
   }
   return (
     <div className={style.wrapper}>
@@ -33,10 +59,13 @@ const Confirm = () => {
       <div className={style.confirmButtonContainer}>
         <div className={style.confirmButtonContainer}>
           <div
-            onClick={() => storeTripDetail()}
+            onClick={() => {
+              storeTripDetail()
+              setActive(false)
+            }}
             className={style.confirmButton}
           >
-            Confirm {selectedRide.service || 'Uber X'}
+            <>Confirm {selectedRide.service || 'Uber X'}</>
           </div>
         </div>
       </div>

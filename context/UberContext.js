@@ -68,7 +68,7 @@ export const UberProvider = ({ children }) => {
       if (res.code == 'Ok') {
         console.log('hello')
         const duration = res?.routes[0]?.duration
-        setBasePrice(Math.round(duration / 80))
+        setBasePrice(Math.round(duration / 100))
       }
       console.log({ basePrice })
     }
@@ -173,6 +173,7 @@ export const UberProvider = ({ children }) => {
         setPrice,
         basePrice,
         setBasePrice,
+        metamask,
       }}
     >
       {children}
